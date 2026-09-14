@@ -37,8 +37,8 @@ llm_clients:
     base_url: "http://localhost:8001/v1"
     api_key: "local"
     vllm:
-      model: "Fluxmire/Qwen-3.6-27B-Arak"
-      revision: "f409090528da38111944def9fb0dd1adf34ecaa0"
+      model: "Fluxmire/Qwen-3.6-27B-ChonkyCat"
+      revision: "dc2d6fc80a4dccf8d9387e23e2281a9e0cb4576b"
       gpu_ids: "0,1"
       tensor_parallel_size: 1
       data_parallel_size: 2
@@ -48,7 +48,7 @@ llm_clients:
       max_num_seqs: 256
       extra_args:
         - "--speculative-config"
-        - '{"method":"dflash","model":"z-lab/Qwen3.6-27B-DFlash","revision":"0919688658996800f86b895034249700e9481106","num_speculative_tokens":7}'
+        - '{"method":"dflash","model":"Fluxmire/Qwen3.6-27B-DFlash-v2","revision":"21d3afae381b7a06b85bea78f33956885acd33fc","num_speculative_tokens":7}'
   judge-critic-instance:
     enabled: true
     base_url: "http://localhost:8002/v1"
@@ -74,12 +74,12 @@ embedder:
 actors:
   planner:
     client: "coder-instance"
-    model: "Fluxmire/Qwen-3.6-27B-Arak"
+    model: "Fluxmire/Qwen-3.6-27B-ChonkyCat"
     workers: 256
     queue_size: 128
     max_tokens: 32768
-    temperature: 0.6
-    top_p: 0.95
+    temperature: 0.7
+    top_p: 0.8
     top_k: 20
     min_p: 0.0
     presence_penalty: 0.0
@@ -92,7 +92,7 @@ actors:
       allow_fallbacks: true
   coder:
     client: "coder-instance"
-    model: "Fluxmire/Qwen-3.6-27B-Arak"
+    model: "Fluxmire/Qwen-3.6-27B-ChonkyCat"
     workers: 256
     queue_size: 128
     max_tokens: 24576
@@ -105,7 +105,7 @@ actors:
     seed: 42
     enable_thinking: false
     multimodal: true
-    ensemble_size: 42
+    ensemble_size: 46
     ensemble_temperature: 0.7
     providers:
       order: []
